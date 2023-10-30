@@ -1,0 +1,23 @@
+---
+tags:
+  - States
+summary: Update an existing state object based on ID
+parameters:
+  - name: states_id
+    in: path
+    type: string
+    required: true
+    description: The unique ID of the state
+  - in: body
+    name: request
+    required: true
+    schema:
+      type: object
+    description: State data to update
+responses:
+  200:
+    description: Request executed successfully
+  400:
+    description: Invalid JSON
+  404:
+    description: State not found
