@@ -1,0 +1,15 @@
+---
+tags:
+  - Users
+summary: Delete a user
+parameters:
+  - name: user_id
+    in: path
+    type: string
+    required: true
+    description: The unique ID of the user
+responses:
+  404:
+    description: User not found
+  200:
+    description: Request executed successfully
