@@ -9,6 +9,7 @@ from models.amenity import Amenity
 
 
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)
+@swag_from('docs/amenity/get_amenities.yml', methods=['GET'])
 def get_amenities():
     '''
         return all amenity objects in json form
@@ -19,6 +20,7 @@ def get_amenities():
 
 @app_views.route('/amenities/<amenity_id>',
                  methods=['GET'], strict_slashes=False)
+@swag_from('docs/amenity/get_amenity_id.yml', methods=['GET'])
 def get_amenity_id(amenity_id):
     '''
         return amenity with given id using http verb GET
@@ -31,6 +33,7 @@ def get_amenity_id(amenity_id):
 
 @app_views.route('/amenities/<amenity_id>',
                  methods=['DELETE'], strict_slashes=False)
+@swag_from('docs/amenity/delete_amenity.yml', methods=['DELETE'])
 def delete_amenity(amenity_id):
     '''
         delete amenity obj given amenity_id
@@ -44,6 +47,7 @@ def delete_amenity(amenity_id):
 
 
 @app_views.route('/amenities', methods=['POST'], strict_slashes=False)
+@swag_from('docs/amenity/create_amenities.yml', methods=['POST'])
 def create_amenities():
     '''
         create new amenity obj
@@ -61,6 +65,7 @@ def create_amenities():
 
 @app_views.route('/amenities/<amenities_id>',
                  methods=['PUT'], strict_slashes=False)
+@swag_from('docs/amenity/update_amenity.yml', methods=['PUT'])
 def update_amenity(amenities_id):
     '''
         update existing amenity object
