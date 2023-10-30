@@ -2,7 +2,8 @@
 '''
     RESTful API for class City
 '''
-from flask import Flask, jsonify, abort, request
+from flask import abort, jsonify, make_response, request
+from flasgger.utils import swag_from
 from models import storage
 from api.v1.views import app_views
 from models.city import City
@@ -10,6 +11,7 @@ from models.city import City
 
 @app_views.route('/states/<state_id>/cities', methods=['GET'],
                  strict_slashes=False)
+@swag_from('docs/city/get_city_by_state.yml', methods=['GET'])
 def get_city_by_state(state_id):
     '''
         return cities in state, json form
@@ -22,6 +24,7 @@ def get_city_by_state(state_id):
 
 
 @app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
+@swag_from('docs/city/get_city_id.yml', methods=['GET'])
 def get_city_id(city_id):
     '''
         return city and its id using GET
@@ -33,6 +36,7 @@ def get_city_id(city_id):
 
 
 @app_views.route('/cities/<city_id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('docs/city/delete_city.yml', methods=['DELETE'])
 def delete_city(city_id):
     '''
         DELETE city obj given city_id
@@ -47,6 +51,7 @@ def delete_city(city_id):
 
 @app_views.route('/states/<state_id>/cities', methods=['POST'],
                  strict_slashes=False)
+@swag_from('docs/city/create_city.yml', methods=['POST'])
 def create_city(state_id):
     '''
         create new city obj through state association using POST
@@ -67,6 +72,7 @@ def create_city(state_id):
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
+@swag_from('docs/city/update_city.yml', methods=['PUT'])
 def update_city(city_id):
     '''
         update existing city object using PUT
