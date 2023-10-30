@@ -6,11 +6,12 @@ This script creates a Flask application with the following features:
 - Runs the Flask server with configurable host and port values.
 """
 
-from models import storage
 from api.v1.views import app_views
-from os import environ
-from flask import Flask
+from flask import Flask, render_template, make_response, jsonify
 from flask_cors import CORS
+from models import storage
+from os import environ
+
 
 # Define default values for host and port
 DEFAULT_HOST = '0.0.0.0'
@@ -32,6 +33,14 @@ def close_db(error):
         error: An error, if any, that occurred during the app context teardown.
     """
     storage.close()
+
+
+@app.errorhandler(404)
+def not_found(error):
+    """Handle 404 Error.
+    Returns a JSON response indicating that the requested resource was not found.
+    """
+    return make_response(jsonify({'error': "Not found"}), 404)
 
 
 if __name__ == "__main__":
