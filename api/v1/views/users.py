@@ -2,13 +2,15 @@
 '''
     RESTful API for class User
 '''
-from flask import Flask, jsonify, abort, request
+from flask import abort, jsonify, make_response, request
+from flasgger.utils import swag_from
 from api.v1.views import app_views
 from models import storage
 from models.user import User
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
+@swag_from('docs/user/get_users.yml', methods=['GET'])
 def get_users():
     '''
         return all user objects in json form
@@ -18,6 +20,7 @@ def get_users():
 
 
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
+@swag_from('docs/user/get_user_id.yml', methods=['GET'])
 def get_user_id(user_id):
     '''
         return user with given id using http verb GET
@@ -29,6 +32,7 @@ def get_user_id(user_id):
 
 
 @app_views.route('/users/<user_id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('docs/user/delete_user.yml', methods=['DELETE'])
 def delete_user(user_id):
     '''
         delete user obj given user_id
@@ -42,6 +46,7 @@ def delete_user(user_id):
 
 
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
+@swag_from('docs/user/create_user.yml', methods=['POST'])
 def create_user():
     '''
         create new user obj
@@ -60,6 +65,7 @@ def create_user():
 
 
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
+@swag_from('docs/user/update_user.yml', methods=['PUT'])
 def update_user(user_id):
     '''
         update existing user object
