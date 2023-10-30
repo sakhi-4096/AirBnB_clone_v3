@@ -2,13 +2,15 @@
 '''
     RESTful API for class State
 '''
-from flask import Flask, jsonify, abort, request
-from models import storage
 from api.v1.views import app_views
+from flask import abort, jsonify, make_response, request
+from flasgger.utils import swag_from
+from models import storage
 from models.state import State
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
+@swag_from('docs/state/get_state.yml', methods=['GET'])
 def get_state():
     '''
         return state in json form
@@ -18,6 +20,7 @@ def get_state():
 
 
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
+@swag_from('docs/state/get_state_id.yml', methods=['GET'])
 def get_state_id(state_id):
     '''
         return state and its id using http verb GET
@@ -32,6 +35,7 @@ def get_state_id(state_id):
     '/states/<state_id>',
     methods=['DELETE'],
     strict_slashes=False)
+@swag_from('docs/state/delete_state.yml', methods=['DELETE'])
 def delete_state(state_id):
     '''
         delete state obj given state_id
@@ -45,6 +49,7 @@ def delete_state(state_id):
 
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
+@swag_from('docs/state/create_state.yml', methods=['POST'])
 def create_state():
     '''
         create new state obj
@@ -61,6 +66,7 @@ def create_state():
 
 
 @app_views.route('/states/<states_id>', methods=['PUT'], strict_slashes=False)
+@swag_from('docs/state/update_state.yml', methods=['PUT'])
 def update_state(states_id):
     '''
         update existing state object
