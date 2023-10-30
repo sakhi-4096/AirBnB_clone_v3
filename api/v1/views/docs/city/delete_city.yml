@@ -1,0 +1,15 @@
+---
+tags:
+  - Cities
+summary: Delete a city based on ID
+parameters:
+  - name: city_id
+    in: path
+    type: string
+    required: true
+    description: The ID of the city to delete
+responses:
+  404:
+    description: City not found
+  200:
+    description: Request completed successfully
