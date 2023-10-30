@@ -1,0 +1,20 @@
+---
+tags:
+  - States
+summary: Create a new state object
+parameters:
+  - in: body
+    name: request
+    required: true
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+    description: State data for creation
+
+responses:
+  201:
+    description: Request completed successfully
+  400:
+    description: Missing name or Not Valid JSON
