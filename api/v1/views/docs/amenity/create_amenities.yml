@@ -1,0 +1,20 @@
+---
+tags:
+  - Amenities
+summary: Link an amenity object to a place
+parameters:
+  - name: amenity_id
+    in: body
+    required: true
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+    description: Amenity data for linking
+
+responses:
+  400:
+    description: Not a valid JSON or missing name
+  201:
+    description: Request executed successfully
