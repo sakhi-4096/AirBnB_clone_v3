@@ -1,0 +1,33 @@
+---
+tags:
+  - Cities
+summary: Get a specific city based on the city_id
+parameters:
+  - name: city_id
+    in: path
+    type: string
+    required: true
+    description: The unique ID of the city
+responses:
+  200:
+    description: Successful request
+    schema:
+      type: object
+      properties:
+        __class__:
+          type: string
+        created_at:
+          type: string
+          description: Time of creation of the instance
+        updated_at:
+          type: string
+          description: Time of the last update of the instance
+        id:
+          type: string
+          description: The UUID of the instance
+        state_id:
+          type: string
+          description: UUID of the city's state
+        name:
+          type: string
+          description: City name
