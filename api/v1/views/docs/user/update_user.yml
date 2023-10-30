@@ -1,0 +1,18 @@
+---
+tags:
+  - Users
+summary: Update user information
+parameters:
+  - name: user_id
+    in: path
+    type: string
+    required: true
+    description: The ID of the user to update
+  - name: update_request
+    in: body
+    required: true
+responses:
+  404:
+    description: User not found
+  200:
+    description: Request executed successfully
