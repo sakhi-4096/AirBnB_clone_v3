@@ -2,7 +2,8 @@
 '''
     RESTful API for class Amenity
 '''
-from flask import Flask, jsonify, abort, request
+from flask import abort, jsonify, make_response, request
+from flasgger.utils import swag_from
 from api.v1.views import app_views
 from models import storage
 from models.amenity import Amenity
