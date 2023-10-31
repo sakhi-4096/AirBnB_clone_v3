@@ -1,0 +1,25 @@
+---
+tags:
+  - Places
+summary: Updates place info based on ID
+parameters:
+  - name: place_id
+    in: path
+    type: string
+    required: true
+    description: The unique id of the place
+  - name: parameters to update
+    in: body
+    required: true
+    requires:
+      - parameter
+    properties:
+      parameter:
+        type: string
+responses:
+  404:
+    description: Resource not found!
+  400:
+    description: Not a valid JSON
+  200:
+    description: Successful request
