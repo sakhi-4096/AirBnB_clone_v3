@@ -2,7 +2,8 @@
 '''
     RESTful API for class Place
 '''
-from flask import Flask, jsonify, abort, request
+from flask import abort, jsonify, make_response, request
+from flasgger.utils import swag_from
 from models import storage
 from api.v1.views import app_views
 from models.place import Place
@@ -10,6 +11,7 @@ from models.place import Place
 
 @app_views.route('/cities/<city_id>/places', methods=['GET'],
                  strict_slashes=False)
+@swag_from('docs/place/get_place_by_city.yml', methods=['GET'])
 def get_place_by_city(city_id):
     '''
         return places in city using GET
@@ -22,6 +24,7 @@ def get_place_by_city(city_id):
 
 
 @app_views.route('/places/<place_id>', methods=['GET'], strict_slashes=False)
+@swag_from('docs/place/get_place_id.yml', methods=['GET'])
 def get_place_id(place_id):
     '''
         return place and its id using GET
@@ -34,6 +37,7 @@ def get_place_id(place_id):
 
 @app_views.route('/places/<place_id>', methods=['DELETE'],
                  strict_slashes=False)
+@swag_from('docs/place/delete_place.yml', methods=['DELETE'])
 def delete_place(place_id):
     '''
         DELETE place obj given place_id
@@ -48,6 +52,7 @@ def delete_place(place_id):
 
 @app_views.route('/cities/<city_id>/places', methods=['POST'],
                  strict_slashes=False)
+@swag_from('docs/place/create_place.yml', methods=['POST'])
 def create_place(city_id):
     '''
         create new place obj through city association using POST
@@ -72,6 +77,7 @@ def create_place(city_id):
 
 
 @app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
+@swag_from('docs/place/update_place.yml', methods=['PUT'])
 def update_place(place_id):
     '''
         update existing place object using PUT
